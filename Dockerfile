@@ -1,0 +1,35 @@
+FROM ubuntu:16.04
+
+# Installing build tools, git, python3 and setting it as the default python
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Download Python from the standalonge builds, symlink it to /bin/, and add to path
+RUN apt-get update -qq && \
+    apt-get install -y --no-install-recommends ca-certificates wget && \
+    apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* && \
+    wget https://github.com/indygreg/python-build-standalone/releases/download/20220502/cpython-3.8.13+20220502-x86_64-unknown-linux-gnu-install_only.tar.gz && \
+    tar -xf cpython-3.8.13+20220502-x86_64-unknown-linux-gnu-install_only.tar.gz -C / && \
+    rm cpython-3.8.13+20220502-x86_64-unknown-linux-gnu-install_only.tar.gz && \
+    ln -s /python/bin/python3.8 /bin/python && \
+    ln -s /python/bin/python3.8 /bin/python3
+ENV PATH /python/bin:$PATH
+
+RUN apt-get update -qq && \
+    # Install tooling neded by Mu
+    apt-get install -y --no-install-recommends make git && \
+    # Install xvfb to be able to run tests headless
+    apt-get install -y --no-install-recommends libxkbcommon-x11-0 xvfb && \
+    # Workaround for PyQt5 issue
+    # qt.qpa.plugin: Could not load the Qt platform plugin "xcb" in "" even though it was found.
+    apt-get install -y --no-install-recommends libqt5gui5 && \
+    # Install AppImage dependencies
+    apt-get install -y --no-install-recommends libfuse2 file appstream && \
+    apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
+
+# This is not meant to end up in the Docker image, but can be uncommented for testing
+# RUN git clone https://github.com/mu-editor/mu.git && cd mu && \
+#    git checkout -b docker-appimage origin/docker-appimage && \
+#    python -m pip --no-cache-dir install -e ".[dev]" && \
+#    xvfb-run make linux
+
+WORKDIR /home/
