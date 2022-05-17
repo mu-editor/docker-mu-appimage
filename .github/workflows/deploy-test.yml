@@ -41,7 +41,7 @@ jobs:
         run: |
           git clone https://github.com/mu-editor/mu.git
           cd mu
-          git checkout -b origin/docker-appimage
+          git checkout -b docker-appimage origin/docker-appimage
       - name: Install Mu test dependencies
         run: |
           cd mu
