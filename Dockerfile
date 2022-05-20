@@ -26,10 +26,4 @@ RUN apt-get update -qq && \
     apt-get install -y --no-install-recommends libfuse2 file appstream && \
     apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
-# This is not meant to end up in the Docker image, but can be uncommented for testing
-# RUN git clone https://github.com/mu-editor/mu.git && cd mu && \
-#    git checkout -b docker-appimage origin/docker-appimage && \
-#    python -m pip --no-cache-dir install -e ".[dev]" && \
-#    xvfb-run make linux
-
 WORKDIR /home/
