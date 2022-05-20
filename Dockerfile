@@ -1,5 +1,7 @@
 FROM ubuntu:16.04
 
+LABEL org.opencontainers.image.source https://github.com/mu-editor/docker-mu-appimage
+
 # Installing build tools, git, python3 and setting it as the default python
 ENV DEBIAN_FRONTEND=noninteractive
 
