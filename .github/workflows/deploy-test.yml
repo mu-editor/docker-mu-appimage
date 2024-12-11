@@ -38,10 +38,7 @@ jobs:
           pip --version
           pip list --verbose
       - name: Clone Mu
-        run: |
-          git clone https://github.com/mu-editor/mu.git
-          cd mu
-          git checkout -b docker-appimage origin/docker-appimage
+        run: git clone https://github.com/mu-editor/mu.git
       - name: Install Mu test dependencies
         run: |
           cd mu
