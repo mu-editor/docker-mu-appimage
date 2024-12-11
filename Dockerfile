@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 
 LABEL org.opencontainers.image.description="Docker image to create Mu Editor AppImage builds."
 LABEL org.opencontainers.image.source="https://github.com/mu-editor/docker-mu-appimage"
