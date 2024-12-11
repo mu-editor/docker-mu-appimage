@@ -10,9 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, 'ci-skip') && !contains(github.event.head_commit.message, 'skip-ci')"
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v1
+        uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -47,4 +47,4 @@ jobs:
       - name: Build Mu AppImage
         run: |
           cd mu
-          xvfb-run make linux
+          QT_QPA_PLATFORM=offscreen make linux

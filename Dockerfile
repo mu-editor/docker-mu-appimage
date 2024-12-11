@@ -10,9 +10,9 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -qq && \
     apt-get install -y --no-install-recommends ca-certificates wget && \
     apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* && \
-    wget https://github.com/indygreg/python-build-standalone/releases/download/20220502/cpython-3.8.13+20220502-x86_64-unknown-linux-gnu-install_only.tar.gz && \
-    tar -xf cpython-3.8.13+20220502-x86_64-unknown-linux-gnu-install_only.tar.gz -C / && \
-    rm cpython-3.8.13+20220502-x86_64-unknown-linux-gnu-install_only.tar.gz && \
+    wget https://github.com/indygreg/python-build-standalone/releases/download/20241002/cpython-3.8.20+20241002-x86_64-unknown-linux-gnu-install_only.tar.gz && \
+    tar -xf cpython-3.8.20+20241002-x86_64-unknown-linux-gnu-install_only.tar.gz -C / && \
+    rm cpython-3.8.20+20241002-x86_64-unknown-linux-gnu-install_only.tar.gz && \
     ln -s /python/bin/python3.8 /bin/python && \
     ln -s /python/bin/python3.8 /bin/python3
 ENV PATH /python/bin:$PATH
